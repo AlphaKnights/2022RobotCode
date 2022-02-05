@@ -192,7 +192,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
     m_driveTrain.driveCartesian(fowardSpeed, sideSpeed, rotation);
   }
 
-  public void arcadeDrive(double forwardPower, double currentRotation, double rotationRate) {
+  public void polarDrive(double forwardPower, double currentRotation, double rotationRate) {
     m_driveTrain.drivePolar(forwardPower, currentRotation, rotationRate);
   }
 
