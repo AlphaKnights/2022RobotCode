@@ -18,5 +18,12 @@ public final class Constants {
         public static final int rightBackFalconID = 1;
         public static final int leftFrontFalconID = 2; 
         public static final int leftBackFalconID = 3;
+        public static final int x_axis = 0;
+        public static final int y_axis = 1;
+    }
+
+    public static class OI_Constants{
+        public static final int m_joystickID = 0;
+        public static final int driveJoystickButtonID = 3;
     }
 }
