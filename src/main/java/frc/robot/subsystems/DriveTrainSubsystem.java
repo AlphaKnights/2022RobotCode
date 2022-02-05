@@ -30,9 +30,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
    * Creates a new ExampleSubsystem.
    */
   // private final AHRS navX = new AHRS(SerialPort.Port.kUSB);
- 
-  // DifferentialDrive m_driveTrain = new DifferentialDrive(new SpeedControllerGroup(leftMotor1, leftMotor2), new SpeedControllerGroup(rightMotor1, rightMotor2));
-  // DifferentialDrive m_driveTrain = new DifferentialDrive(, rightMotor)
+
   MotorController frontRightGroup = new MotorController() {
     TalonFX rightFrontMotor = new TalonFX(DriveTrainConstants.rightFrontFalconID);
     @Override
