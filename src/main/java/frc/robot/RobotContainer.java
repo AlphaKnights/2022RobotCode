@@ -7,10 +7,13 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.CartesianDriveCommand;
-import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.RotateArmsCommand;
+import frc.robot.subsystems.ClimbingSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants.OI_Constants;
+import edu.wpi.first.wpilibj.Joystick;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -20,12 +23,14 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  Joystick c_joystick = new Joystick(OI_Constants.c_joystickID);
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-
   private final DriveTrainSubsystem m_DriveTrainSubsystem = DriveTrainSubsystem.getInstance();
+  private final ClimbingSubsystem c_ClimbingSubsystem = ClimbingSubsystem.getInstance(c_joystick);
+
   private final CartesianDriveCommand m_CartesianDriveCommand = new CartesianDriveCommand(m_DriveTrainSubsystem);
+  private final RotateArmsCommand m_autoCommand = new RotateArmsCommand(c_ClimbingSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -41,6 +46,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     m_DriveTrainSubsystem.setDefaultCommand(m_CartesianDriveCommand);
+
   }
 
   /**
