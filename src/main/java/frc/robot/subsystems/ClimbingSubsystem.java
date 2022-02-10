@@ -17,50 +17,78 @@ public class ClimbingSubsystem extends SubsystemBase {
     public Joystick joystick;
     static ClimbingSubsystem INSTANCE = new ClimbingSubsystem();
 
-    public MotorController ArmRotationGroup = new MotorController() {
-        TalonFX leftArmMotor = new TalonFX(ClimbingConstants.leftArmTalonID); //TODO make sure this constant exists
-        TalonFX rightArmMotor = new TalonFX(ClimbingConstants.rightArmTalonID);
+    public MotorController ArmRotationMotor = new MotorController() {
+        TalonFX armRotationMotor = new TalonFX(ClimbingConstants.armRotationMotor);
+
         @Override
         public void set(double speed) {
-            leftArmMotor.set(ControlMode.PercentOutput, speed * ClimbingConstants.leftTalonRotation);
-            leftArmMotor.setNeutralMode(NeutralMode.Coast);
-            rightArmMotor.set(ControlMode.PercentOutput, speed * ClimbingConstants.rightTalonRotation);
-            rightArmMotor.setNeutralMode(NeutralMode.Coast);
+            armRotationMotor.set(ControlMode.PercentOutput, speed * ClimbingConstants.armRotationMotor);
+            armRotationMotor.setNeutralMode(NeutralMode.Coast);
         }
 
         @Override
         public double get() { // if this consistently return -1, rewrite a get function for each motor
-            if (leftArmMotor.getMotorOutputPercent() == rightArmMotor.getMotorOutputPercent())
-                return leftArmMotor.getMotorOutputPercent();
-            else 
-                return -1;
+            return armRotationMotor.getMotorOutputPercent();
         }
 
         @Override
         public void setInverted(boolean isInverted) {
-            leftArmMotor.setInverted(isInverted);
-            rightArmMotor.setInverted(isInverted);
+            armRotationMotor.setInverted(isInverted);
         }
 
         @Override
         public boolean getInverted() {
-            return leftArmMotor.getInverted() && rightArmMotor.getInverted();
+            return armRotationMotor.getInverted();
         }
 
         @Override
         public void disable() {
-            leftArmMotor.set(ControlMode.PercentOutput, 0);
-            leftArmMotor.setNeutralMode(NeutralMode.Coast);
-            rightArmMotor.set(ControlMode.PercentOutput, 0);
-            rightArmMotor.setNeutralMode(NeutralMode.Coast);
+            armRotationMotor.set(ControlMode.PercentOutput, 0);
+            armRotationMotor.setNeutralMode(NeutralMode.Coast);
         }
 
         @Override
         public void stopMotor() {
-            leftArmMotor.set(ControlMode.PercentOutput, 0);
-            leftArmMotor.setNeutralMode(NeutralMode.Brake);
-            rightArmMotor.set(ControlMode.PercentOutput, 0);
-            rightArmMotor.setNeutralMode(NeutralMode.Brake);
+            armRotationMotor.set(ControlMode.PercentOutput, 0);
+            armRotationMotor.setNeutralMode(NeutralMode.Brake);
+        }
+        
+    };
+
+    public MotorController ArmAltitudeMotor = new MotorController() {
+        TalonFX armAltitudeMotor = new TalonFX(ClimbingConstants.armElevationMotor);
+
+        @Override
+        public void set(double speed) {
+            armAltitudeMotor.set(ControlMode.PercentOutput, speed * ClimbingConstants.armRotationMotor);
+            armAltitudeMotor.setNeutralMode(NeutralMode.Coast);
+        }
+
+        @Override
+        public double get() { // if this consistently return -1, rewrite a get function for each motor
+            return armAltitudeMotor.getMotorOutputPercent();
+        }
+
+        @Override
+        public void setInverted(boolean isInverted) {
+            armAltitudeMotor.setInverted(isInverted);
+        }
+
+        @Override
+        public boolean getInverted() {
+            return armAltitudeMotor.getInverted();
+        }
+
+        @Override
+        public void disable() {
+            armAltitudeMotor.set(ControlMode.PercentOutput, 0);
+            armAltitudeMotor.setNeutralMode(NeutralMode.Coast);
+        }
+
+        @Override
+        public void stopMotor() {
+            armAltitudeMotor.set(ControlMode.PercentOutput, 0);
+            armAltitudeMotor.setNeutralMode(NeutralMode.Brake);
         }
         
     };

@@ -5,14 +5,11 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.ClimbingSubsystem;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.Constants.ClimbingConstants;
-import frc.robot.Constants.OI_Constants;
 
 /** An example command that uses an example subsystem. */
-public class RotateArmsCommand extends CommandBase {
+public class ArmMovementCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ClimbingSubsystem c_subsystem;
 
@@ -21,7 +18,7 @@ public class RotateArmsCommand extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public RotateArmsCommand(ClimbingSubsystem subsystem) {
+  public ArmMovementCommand(ClimbingSubsystem subsystem) {
     c_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
@@ -35,7 +32,8 @@ public class RotateArmsCommand extends CommandBase {
   @Override
   public void execute() {
 
-    c_subsystem.ArmRotationGroup.set(c_subsystem.joystick.getRawAxis(ClimbingConstants.y_axis) * ClimbingConstants.armSensitivity);
+    c_subsystem.ArmRotationMotor.set(c_subsystem.joystick.getRawAxis(ClimbingConstants.y_axis) * ClimbingConstants.armRotationSensitivity);
+    c_subsystem.ArmAltitudeMotor.set(c_subsystem.joystick.getRawAxis(ClimbingConstants.x_axis) * ClimbingConstants.armHeightSensitivity);
 
   }
 

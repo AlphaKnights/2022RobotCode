@@ -23,14 +23,14 @@ public final class Constants {
     }
 
     public static class ClimbingConstants{
-        public static final int leftArmTalonID = 69696969;
-        public static final int rightArmTalonID = 69696969;
-        public static final int rightTalonRotation = 1;
-        public static final int leftTalonRotation = -1;
-        public static final int x_axis = 0;
-        public static final int y_axis = 1;
 
-        public static final double armSensitivity = 1;
+        public static final int armRotationMotor = 2323;
+        public static final int armElevationMotor = 2323;
+        public static final int x_axis = 5;
+        public static final int y_axis = 6;
+
+        public static final double armRotationSensitivity = 1;
+        public static final double armHeightSensitivity = 1;
     }
 
     public static class OI_Constants{
