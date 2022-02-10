@@ -24,8 +24,8 @@ public final class Constants {
 
     public static class ClimbingConstants{
 
-        public static final int armRotationMotor = 2323;
-        public static final int armElevationMotor = 2323;
+        public static final int armRotationMotor = 69420;
+        public static final int armElevationMotor = 69420;
         public static final int x_axis = 5;
         public static final int y_axis = 6;
 
