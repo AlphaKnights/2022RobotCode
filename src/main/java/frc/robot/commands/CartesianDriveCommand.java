@@ -8,17 +8,17 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.AccelCurve;
 import frc.robot.Constants.DriveTrainConstants;
-import frc.robot.Constants.OI_Constants;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
 public class CartesianDriveCommand extends CommandBase {
   /** Creates a new CartesianDrive. */
-  DriveTrainSubsystem m_DriveTrainSubsystem;
-  Joystick joystick = new Joystick(OI_Constants.m_joystickID);
+  private final DriveTrainSubsystem m_DriveTrainSubsystem;
+  private final Joystick joystick;
   
-  public CartesianDriveCommand(DriveTrainSubsystem drivetrainsubsystem) {
+  public CartesianDriveCommand(DriveTrainSubsystem drivetrainsubsystem, Joystick _joystick) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_DriveTrainSubsystem = drivetrainsubsystem;
+    joystick = _joystick;
     addRequirements(m_DriveTrainSubsystem);
   }
 

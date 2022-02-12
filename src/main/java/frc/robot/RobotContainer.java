@@ -5,9 +5,13 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.Constants.OI_Constants;
+import frc.robot.commands.ArmMovementCommand;
 import frc.robot.commands.CartesianDriveCommand;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.ClimbingSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -23,10 +27,14 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  
+  Joystick c_joystick = new Joystick(OI_Constants.c_joystickID);
 
   private final DriveTrainSubsystem m_DriveTrainSubsystem = DriveTrainSubsystem.getInstance();
-  private final CartesianDriveCommand m_CartesianDriveCommand = new CartesianDriveCommand(m_DriveTrainSubsystem);
+  private final ClimbingSubsystem c_ClimbingSubsystem = ClimbingSubsystem.getInstance();
 
+  private final CartesianDriveCommand m_CartesianDriveCommand = new CartesianDriveCommand(m_DriveTrainSubsystem, c_joystick);
+  private final ArmMovementCommand c_RotateArmsCommand = new ArmMovementCommand(c_ClimbingSubsystem, c_joystick);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -41,6 +49,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     m_DriveTrainSubsystem.setDefaultCommand(m_CartesianDriveCommand);
+    c_ClimbingSubsystem.setDefaultCommand(c_RotateArmsCommand);
   }
 
   /**
