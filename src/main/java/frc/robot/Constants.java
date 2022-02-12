@@ -90,11 +90,20 @@ public final class Constants {
  * 
  * 
  *                  Joystick Axis Uses
- *                   Logitech
- * Drive Forward                                            0  -  Left Joystick - Y
- * Drive Sideways                                           1  -  Left Joystick - X
- * Rotate                                                   2  -  Right Joystick - Y
- * TBD                                                      3  -  Right Joystick - X
- * TBD                                                      4
-
+ *                       Logitech
+ * Drive Forward                                            1  -  Left Joystick - Y
+ * Drive Sideways                                           2  -  Left Joystick - X
+ * Rotate                                                   3  -  Right Joystick - X
+ * TBD                                                      4  -  Right Joystick - Y
+ * TBD                                                      5  -  DPad - X
+ * TBD                                                      6  -  DPad - Y
+ * 
+ *                   Flight Controller
+ * TBD                                                      1  -  X Axis
+ * TBD                                                      2  -  Y Axis
+ * TBD                                                      3  -  Twist
+ * TBD                                                      4  -  Power Slider
+ * TBD                                                      5  -  Hat - X
+ * TBD                                                      6  -  Hat - Y
+ * 
  */
