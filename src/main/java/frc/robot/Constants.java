@@ -1,7 +1,3 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
 
 /**
@@ -18,7 +14,6 @@ public final class Constants {
         public static final int rightBackFalconID = 1;
         public static final int leftFrontFalconID = 2; 
         public static final int leftBackFalconID = 3;
-        
         //When using normal Joysticks
         // public static final int x_axis = 0;
         // public static final int y_axis = 1;
@@ -27,11 +22,6 @@ public final class Constants {
         public static final int forward_axis = 0;
         public static final int side_axis = 1;
         public static final int rotation_axis = 2;
-
-        //Curve Function
-        
-
-
     }
 
     public static class AccelCurve{
@@ -41,13 +31,70 @@ public final class Constants {
         public static final double m = Math.pow(startPoint, (1/exponent))/startPoint;
         public static final double sub_amount = m*startPoint;
         public static final double add_amount = startPoint;
-        
         //example of curve, this is actually implemented in the subsystem/command
         // public static final double accelCurve = (Math.pow((m*x-sub_amount), exponent)+add_amount); 
     }
 
+    public static class ClimbingConstants{
+
+        public static final int armRotationMotor = 4;
+        public static final int armElevationMotor = 5;
+        public static final int x_axis = 5;
+        public static final int y_axis = 6;
+
+        public static final double armRotationSensitivity = 1;
+        public static final double armHeightSensitivity = 1;
+    }
+
     public static class OI_Constants{
-        public static final int m_joystickID = 0;
+        public static final int m_joystickID = 0;//Logitech Controller
+        public static final int c_joystickID = 1;//Flight Joystick
+        
         public static final int driveJoystickButtonID = 3;
     }
 }
+
+/** 
+ *         Motor Name                                      ID
+ * 
+ * Front Right Drivetrain motor:                            0
+ * Front Left Drivetrain motor:                             2
+ * Back Right Drivetrain motor:                             1
+ * Back Left Drivetrain motor:                              3
+ * 
+ * Altiude Climb Motor:                                     4
+ * Climb Tower Height Motor:                                5
+ * 
+ * Intake Motor:                                            6
+ * Intake Leg Motor:                                        7
+ * Intake Head Motor:                                       8
+ * 
+*/
+
+/**
+ *                  Button Mapping
+ *       Button Use / Name                              Button ID
+ * TBD                                                      0
+ * TBD                                                      1
+ * TBD                                                      2
+ * TBD                                                      3
+ * TBD                                                      4
+ * TBD                                                      5
+ * TBD                                                      6
+ * TBD                                                      7
+ * TBD                                                      8
+ * TBD                                                      9
+ * TBD                                                     10
+ * TBD                                                     11
+ * TBD                                                     12
+ * 
+ * 
+ *                  Joystick Axis Uses
+ *                   Logitech
+ * Drive Forward                                            0  -  Left Joystick - Y
+ * Drive Sideways                                           1  -  Left Joystick - X
+ * Rotate                                                   2  -  Right Joystick - Y
+ * TBD                                                      3  -  Right Joystick - X
+ * TBD                                                      4
+
+ */
