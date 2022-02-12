@@ -6,7 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants.AccCurve;
+import frc.robot.Constants.AccelCurve;
 import frc.robot.Constants.DriveTrainConstants;
 import frc.robot.Constants.OI_Constants;
 import frc.robot.subsystems.DriveTrainSubsystem;
@@ -32,9 +32,9 @@ public class CartesianDriveCommand extends CommandBase {
     //Logitech Joysticks
     //spaghetti code to reduce execution time
     m_DriveTrainSubsystem.cartesianDrive(
-      (Math.pow((AccCurve.m*(joystick.getRawAxis(DriveTrainConstants.forward_axis))-AccCurve.sub_amount), AccCurve.exponent)+AccCurve.add_amount),
-      (Math.pow((AccCurve.m*(joystick.getRawAxis(DriveTrainConstants.side_axis))-AccCurve.sub_amount), AccCurve.exponent)+AccCurve.add_amount),
-      (Math.pow((AccCurve.m*(joystick.getRawAxis(DriveTrainConstants.rotation_axis))-AccCurve.sub_amount), AccCurve.exponent)+AccCurve.add_amount)
+      (Math.pow((AccelCurve.m*(joystick.getRawAxis(DriveTrainConstants.forward_axis))-AccelCurve.sub_amount), AccelCurve.exponent)+AccelCurve.add_amount),
+      (Math.pow((AccelCurve.m*(joystick.getRawAxis(DriveTrainConstants.side_axis))-AccelCurve.sub_amount), AccelCurve.exponent)+AccelCurve.add_amount),
+      (Math.pow((AccelCurve.m*(joystick.getRawAxis(DriveTrainConstants.rotation_axis))-AccelCurve.sub_amount), AccelCurve.exponent)+AccelCurve.add_amount)
     );
   }
 

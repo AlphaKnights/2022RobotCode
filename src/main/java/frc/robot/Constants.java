@@ -34,7 +34,7 @@ public final class Constants {
 
     }
 
-    public static class AccCurve{
+    public static class AccelCurve{
         public static final int x = 0;
         public static final double exponent = 3;
         public static final double startPoint = 50;
