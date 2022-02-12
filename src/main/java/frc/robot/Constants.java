@@ -18,8 +18,32 @@ public final class Constants {
         public static final int rightBackFalconID = 1;
         public static final int leftFrontFalconID = 2; 
         public static final int leftBackFalconID = 3;
-        public static final int x_axis = 0;
-        public static final int y_axis = 1;
+        
+        //When using normal Joysticks
+        // public static final int x_axis = 0;
+        // public static final int y_axis = 1;
+
+        //Logitech Controller
+        public static final int forward_axis = 0;
+        public static final int side_axis = 1;
+        public static final int rotation_axis = 2;
+
+        //Curve Function
+        
+
+
+    }
+
+    public static class AccCurve{
+        public static final int x = 0;
+        public static final double exponent = 3;
+        public static final double startPoint = 50;
+        public static final double m = Math.pow(startPoint, (1/exponent))/startPoint;
+        public static final double sub_amount = m*startPoint;
+        public static final double add_amount = startPoint;
+        
+        //example of curve, this is actually implemented in the subsystem/command
+        // public static final double accelCurve = (Math.pow((m*x-sub_amount), exponent)+add_amount); 
     }
 
     public static class OI_Constants{
