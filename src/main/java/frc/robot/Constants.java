@@ -23,5 +23,6 @@ public final class Constants {
     public static final class OIConstants{
         public static final int joyAxi=1;
         public static final int joyAxiy=2;
+        public static final int joyPort=1;
     }
 }
