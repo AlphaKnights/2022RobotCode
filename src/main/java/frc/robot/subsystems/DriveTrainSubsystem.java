@@ -10,10 +10,11 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-
+import edu.wpi.first.wpilibj.SPI;
 // import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 // import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -180,11 +181,13 @@ public class DriveTrainSubsystem extends SubsystemBase {
   };
 
   MecanumDrive m_driveTrain = new MecanumDrive(frontLeftGroup, backLeftGroup, frontRightGroup, backRightGroup);
-  
+  private final AHRS gyro = new AHRS(SPI.Port.kMXP); // TODO: Check if SPI.Port.kMXP is the correct port. IDK what is it
+
   static DriveTrainSubsystem INSTANCE = new DriveTrainSubsystem();
 
   // private void DriveTrainSubsystem() {
   // }
+
 
   public void cartesianDrive(double fowardSpeed, double sideSpeed, double rotation) {
     m_driveTrain.driveCartesian(fowardSpeed, sideSpeed, rotation);
@@ -193,6 +196,19 @@ public class DriveTrainSubsystem extends SubsystemBase {
   public void polarDrive(double forwardPower, double currentRotation, double rotationRate) {
     m_driveTrain.drivePolar(forwardPower, currentRotation, rotationRate);
   }
+
+  public void straightDrive(double forwardSpeed, double sideSpeed, double targetAngle, int tolerence) {
+    // If the robot spins uncontrollably, move the 
+		if(gyro.getYaw() < targetAngle - tolerence) {
+			cartesianDrive(forwardSpeed, sideSpeed, targetAngle * DriveTrainConstants.autocorrectSensitivity * -1);
+		}
+		else if(gyro.getYaw() > targetAngle + tolerence) {
+			cartesianDrive(forwardSpeed, sideSpeed, targetAngle * DriveTrainConstants.autocorrectSensitivity);
+		}
+		else {
+			cartesianDrive(forwardSpeed, sideSpeed, targetAngle);
+		}
+	}
 
   @Override
   public void periodic() {

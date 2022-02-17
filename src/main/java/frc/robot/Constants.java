@@ -14,6 +14,8 @@ public final class Constants {
         public static final int rightBackFalconID = 1;
         public static final int leftFrontFalconID = 2; 
         public static final int leftBackFalconID = 3;
+
+        public static final double autocorrectSensitivity = 1.5;
         //When using normal Joysticks
         // public static final int x_axis = 0;
         // public static final int y_axis = 1;
