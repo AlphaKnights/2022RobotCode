@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.RunArm;
 import frc.robot.commands.RunIntake;
 import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.IntakeSubsystem;
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -22,7 +23,7 @@ import frc.robot.subsystems.IntakeSubsystem;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final Joystick theJoystick=new Joystick(1);
+  private final Joystick theJoystick=new Joystick(OIConstants.joyPort);
   private final IntakeSubsystem l_sub=new IntakeSubsystem();
   private final RunIntake m_intake=new RunIntake(l_sub, theJoystick);
   private final ArmSubsystem a_sub=new ArmSubsystem();
