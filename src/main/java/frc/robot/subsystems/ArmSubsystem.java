@@ -1,17 +1,16 @@
-
-
 package frc.robot.subsystems;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IntakeConstants;
 
 public class ArmSubsystem extends SubsystemBase {
-  WPI_TalonSRX IntakingMotor;
+  Talon IntakingMotor;
   /**
    * Creates a new IntakeSubsystem.
    */
   public ArmSubsystem(){
-    IntakingMotor=new WPI_TalonSRX(IntakeConstants.armMotorID);
+    IntakingMotor=new Talon
+(IntakeConstants.armMotorID);
   }
 
   public void goArm(double val){
