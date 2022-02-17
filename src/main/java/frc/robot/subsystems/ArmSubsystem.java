@@ -9,7 +9,7 @@ public class ArmSubsystem extends SubsystemBase {
    * Creates a new IntakeSubsystem.
    */
   public ArmSubsystem(){
-    IntakingMotor=new Talon(IntakeConstants.armMotorID);
+    IntakingMotor=new Talon (IntakeConstants.armMotorID);
   }
 
   public void goArm(double val){
