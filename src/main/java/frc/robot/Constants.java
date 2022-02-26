@@ -10,10 +10,10 @@ package frc.robot;
  */
 public final class Constants {
     public static class DriveTrainConstants{
-        public static final int rightFrontFalconID = 0; 
-        public static final int rightBackFalconID = 1;
-        public static final int leftFrontFalconID = 2; 
-        public static final int leftBackFalconID = 3;
+        public static final int rightFrontFalconID = 1; 
+        public static final int rightBackFalconID = 2;
+        public static final int leftFrontFalconID = 3; 
+        public static final int leftBackFalconID = 4;
         //When using normal Joysticks
         // public static final int x_axis = 0;
         // public static final int y_axis = 1;
@@ -21,7 +21,7 @@ public final class Constants {
         //Logitech Controller
         public static final int forward_axis = 0;
         public static final int side_axis = 1;
-        public static final int rotation_axis = 2;
+        public static final int rotation_axis = 4;
     }
 
     public static class AccelCurve{
