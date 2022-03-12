@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -12,15 +13,24 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import frc.robot.Constants.ClimbingConstants;
 
 public class ClimbingSubsystem extends SubsystemBase {
+
+    public Joystick joystick;
     static ClimbingSubsystem INSTANCE = new ClimbingSubsystem();
+
+    public static int rotationLowerLimit;
+    public static int rotationUpperLimit;
+    public static int altitudeLowerLimit;
+    public static int altitudeUpperLimit;
 
     public MotorController ArmRotationMotor = new MotorController() {
         TalonFX armRotationMotor = new TalonFX(ClimbingConstants.armRotationMotor);
 
         @Override
         public void set(double speed) {
-            armRotationMotor.set(ControlMode.PercentOutput, speed * ClimbingConstants.armRotationMotor);
-            armRotationMotor.setNeutralMode(NeutralMode.Coast);
+            if ((armRotationMotor.getSelectedSensorPosition() >= rotationLowerLimit && speed <= 0) || (armRotationMotor.getSelectedSensorPosition() <= rotationUpperLimit && speed >= 0)) {
+                armRotationMotor.set(ControlMode.PercentOutput, speed * ClimbingConstants.armRotationMotor);
+                armRotationMotor.setNeutralMode(NeutralMode.Coast);
+            }
         }
 
         @Override
@@ -49,6 +59,10 @@ public class ClimbingSubsystem extends SubsystemBase {
             armRotationMotor.set(ControlMode.PercentOutput, 0);
             armRotationMotor.setNeutralMode(NeutralMode.Brake);
         }
+
+        public double getEncoderValue() {
+            return armRotationMotor.getSelectedSensorPosition();
+        }
         
     };
 
@@ -57,8 +71,10 @@ public class ClimbingSubsystem extends SubsystemBase {
 
         @Override
         public void set(double speed) {
-            armAltitudeMotor.set(ControlMode.PercentOutput, speed * ClimbingConstants.armRotationMotor);
-            armAltitudeMotor.setNeutralMode(NeutralMode.Coast);
+            if ((armAltitudeMotor.getSelectedSensorPosition() >= altitudeLowerLimit && speed <= 0) || (armAltitudeMotor.getSelectedSensorPosition() <= altitudeUpperLimit && speed >= 0)) {
+                armAltitudeMotor.set(ControlMode.PercentOutput, speed * ClimbingConstants.armRotationMotor);
+                armAltitudeMotor.setNeutralMode(NeutralMode.Coast);
+            }
         }
 
         @Override
@@ -87,10 +103,20 @@ public class ClimbingSubsystem extends SubsystemBase {
             armAltitudeMotor.set(ControlMode.PercentOutput, 0);
             armAltitudeMotor.setNeutralMode(NeutralMode.Brake);
         }
+
+        public double getEncoderValue() {
+            return armAltitudeMotor.getSelectedSensorPosition();
+        }
         
     };
   /** Creates a new ExampleSubsystem. */
-  public ClimbingSubsystem() {}
+  public ClimbingSubsystem() {
+      altitudeLowerLimit = ArmAltitudeMotor.getEncoderValue();
+      rotationLowerLimit = ArmRotationMotor.getEncoderValue();
+
+      altitudeUpperLimit = altitudeLowerLimit + ClimbingConstants.altitudeRange;
+      rotationUpperLimit = rotationLowerLimit + ClimbingConstants.rotationRange;
+  }
 
   @Override
   public void periodic() {
@@ -102,7 +128,8 @@ public class ClimbingSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run during simulation
   }
 
-  public static ClimbingSubsystem getInstance() {
+  public static ClimbingSubsystem getInstance(Joystick js) {
+    INSTANCE.joystick = js;
     return INSTANCE;
   }
 }

@@ -37,13 +37,16 @@ public final class Constants {
 
     public static class ClimbingConstants{
 
-        public static final int armRotationMotor = 4;
-        public static final int armElevationMotor = 5;
+        public static final int armRotationMotor;
+        public static final int armElevationMotor;
         public static final int x_axis = 5;
         public static final int y_axis = 6;
 
         public static final double armRotationSensitivity = 1;
         public static final double armHeightSensitivity = 1;
+
+        public static final int rotationRange = 696420;
+        public static final int altitudeRange = 69429;
     }
 
     public static class OI_Constants{
