@@ -32,10 +32,12 @@ public class CartesianDriveCommand extends CommandBase {
     //Logitech Joysticks
     //spaghetti code to reduce execution time
     m_DriveTrainSubsystem.cartesianDrive(
-      (Math.pow((AccelCurve.m*(joystick.getRawAxis(DriveTrainConstants.forward_axis))-AccelCurve.sub_amount), AccelCurve.exponent)+AccelCurve.add_amount),
-      (Math.pow((AccelCurve.m*(joystick.getRawAxis(DriveTrainConstants.side_axis))-AccelCurve.sub_amount), AccelCurve.exponent)+AccelCurve.add_amount),
-      (Math.pow((AccelCurve.m*(joystick.getRawAxis(DriveTrainConstants.rotation_axis))-AccelCurve.sub_amount), AccelCurve.exponent)+AccelCurve.add_amount)
-    );
+      // (Math.pow((AccelCurve.m*(joystick.getRawAxis(DriveTrainConstants.forward_axis))-AccelCurve.sub_amount), AccelCurve.exponent)+AccelCurve.add_amount),
+      // (Math.pow((AccelCurve.m*(joystick.getRawAxis(DriveTrainConstants.side_axis))-AccelCurve.sub_amount), AccelCurve.exponent)+AccelCurve.add_amount),
+      // (Math.pow((AccelCurve.m*(joystick.getRawAxis(DriveTrainConstants.rotation_axis))-AccelCurve.sub_amount), AccelCurve.exponent)+AccelCurve.add_amount)
+      joystick.getRawAxis(DriveTrainConstants.forward_axis)*.8,
+      joystick.getRawAxis(DriveTrainConstants.side_axis)*-1,
+      joystick.getRawAxis(DriveTrainConstants.rotation_axis)*-.6);
   }
 
   // Called once the command ends or is interrupted.

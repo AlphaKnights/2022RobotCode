@@ -10,64 +10,71 @@ package frc.robot;
  */
 public final class Constants {
     public static class DriveTrainConstants{
-        public static final int rightFrontFalconID = 1; 
-        public static final int rightBackFalconID = 2;
-        public static final int leftFrontFalconID = 3; 
-        public static final int leftBackFalconID = 4;
-        //When using normal Joysticks
-        // public static final int x_axis = 0;
-        // public static final int y_axis = 1;
+        public static final int rightFrontFalconID = 1;
+        public static final int rightBackFalconID = 4;
+        public static final int leftFrontFalconID = 2; 
+        public static final int leftBackFalconID = 3;
 
-        //Logitech Controller
-        public static final int forward_axis = 0;
-        public static final int side_axis = 1;
-        public static final int rotation_axis = 4;
+        //Logitech Controller - Ryan
+        // public static final int forward_axis = 1;
+        // public static final int side_axis = 0;
+        // public static final int rotation_axis = 4;
+        public static final int forward_axis = 1;
+        public static final int side_axis = 4;
+        public static final int rotation_axis = 0;
     }
 
     public static class AccelCurve{
         public static final int x = 0;
+        public static final double sensitive = 0;
         public static final double exponent = 3;
         public static final double startPoint = 50;
         public static final double m = Math.pow(startPoint, (1/exponent))/startPoint;
         public static final double sub_amount = m*startPoint;
         public static final double add_amount = startPoint;
-        //example of curve, this is actually implemented in the subsystem/command
+        // example of curve, this is actually implemented in the subsystem/command
         // public static final double accelCurve = (Math.pow((m*x-sub_amount), exponent)+add_amount); 
     }
 
     public static class ClimbingConstants{
-
-        public static final int armRotationMotor = 4;
-        public static final int armElevationMotor = 5;
-        public static final int x_axis = 5;
-        public static final int y_axis = 6;
-
+        public static final int climbMotor = 12;
+        public static final int armRotationMotor = 14;
+        public static final int armElevationMotorLeft = 15;
+        public static final int armElevationMotorRight = 16;
         public static final double armRotationSensitivity = 1;
-        public static final double armHeightSensitivity = 1;
+        public static final double armHeightSensitivity = .75;
+        public static final double climbSensitivity = 1;
     }
 
     public static class OI_Constants{
         public static final int m_joystickID = 0;//Logitech Controller
-        public static final int c_joystickID = 1;//Flight Joystick
-        
-        public static final int driveJoystickButtonID = 3;
+        public static final int c_joystickID = 1;//Flight Joystick Climb
+        public static final int i_joystickID = 2;//Flight Joystick Intake
+    }
+
+    public static class IntakeConstants{
+        public static final int intakeMotorID = 7;
+        public static final int intakeHeadMotorID = 6;
+        public static final int intakeRotationMotorID = 10;
+        public static final int maxRevolutions = 48;
+        public static int location = 0;
     }
 }
 
 /** 
  *         Motor Name                                      ID
  * 
- * Front Right Drivetrain motor:                            0
- * Front Left Drivetrain motor:                             2
- * Back Right Drivetrain motor:                             1
- * Back Left Drivetrain motor:                              3
+ * Front Right Drivetrain motor:                            1
+ * Front Left Drivetrain motor:                             3
+ * Back Right Drivetrain motor:                             2
+ * Back Left Drivetrain motor:                              4
  * 
- * Altiude Climb Motor:                                     4
- * Climb Tower Height Motor:                                5
+ * Altiude Climb Motor:                                     ???
+ * Climb Tower Height Motor:                                14 & 20
  * 
  * Intake Motor:                                            6
- * Intake Leg Motor:                                        7
- * Intake Head Motor:                                       8
+ * Intake Leg Motor:                                        9
+ * Intake Head Motor:                                       10
  * 
 */
 

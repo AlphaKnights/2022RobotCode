@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.ClimbingConstants;
 
 /** An example command that uses an example subsystem. */
-public class ArmMovementCommand extends CommandBase {
+public class ArmMovementCommandold extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ClimbingSubsystem c_subsystem;
   private final Joystick joystick;
@@ -20,7 +20,7 @@ public class ArmMovementCommand extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ArmMovementCommand(ClimbingSubsystem subsystem, Joystick _joystick) {
+  public ArmMovementCommandold(ClimbingSubsystem subsystem, Joystick _joystick) {
     c_subsystem = subsystem;
     joystick = _joystick;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -34,8 +34,8 @@ public class ArmMovementCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    c_subsystem.ArmRotationMotor.set(joystick.getRawAxis(ClimbingConstants.y_axis) * ClimbingConstants.armRotationSensitivity);
-    c_subsystem.ArmAltitudeMotor.set(joystick.getRawAxis(ClimbingConstants.x_axis) * ClimbingConstants.armHeightSensitivity);
+    // c_subsystem.ArmRotationMotor.set(joystick.getRawAxis(ClimbingConstants.y_axis) * ClimbingConstants.armRotationSensitivity);
+    // c_subsystem.ArmAltitudeMotor.set(joystick.getRawAxis(ClimbingConstants.x_axis) * ClimbingConstants.armHeightSensitivity);
   }
 
   // Called once the command ends or is interrupted.

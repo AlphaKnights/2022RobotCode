@@ -7,13 +7,19 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.OI_Constants;
-import frc.robot.commands.ArmMovementCommand;
+import frc.robot.commands.ArmMovementCommandold;
 import frc.robot.commands.CartesianDriveCommand;
+import frc.robot.commands.ClimbUpCommand;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.RunIntake;
+import frc.robot.commands.SetLEDs;
 import frc.robot.subsystems.ClimbingSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -29,18 +35,22 @@ public class RobotContainer {
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
   Joystick c_joystick = new Joystick(OI_Constants.c_joystickID);
-
-  private final DriveTrainSubsystem m_DriveTrainSubsystem = DriveTrainSubsystem.getInstance();
+  // private final DriveTrainSubsystem m_DriveTrainSubsystem = DriveTrainSubsystem.getInstance();
+  // private final IntakeSubsystem c_intakeSubsystem = IntakeSubsystem.getInstance();
   private final ClimbingSubsystem c_ClimbingSubsystem = ClimbingSubsystem.getInstance();
+  // private final ClimbingSubsystem c_ClimbingSubsystem = ClimbingSubsystem.getInstance();
 
-  private final CartesianDriveCommand m_CartesianDriveCommand = new CartesianDriveCommand(m_DriveTrainSubsystem, c_joystick);
-  private final ArmMovementCommand c_RotateArmsCommand = new ArmMovementCommand(c_ClimbingSubsystem, c_joystick);
+  // private final CartesianDriveCommand m_CartesianDriveCommand = new CartesianDriveCommand(m_DriveTrainSubsystem, c_joystick);
+  // private final RunIntake c_runIntake = new RunIntake(c_intakeSubsystem, c_joystick);
+  private final ClimbUpCommand c_climb = new ClimbUpCommand(c_ClimbingSubsystem, c_joystick);
+  // private final SetLEDs leds = new SetLEDs();
+  // private final ArmMovementCommand c_RotateArmsCommand = new ArmMovementCommand(c_ClimbingSubsystem, c_joystick);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
+    // Shuffleboard.getTab("Leds").addString("Hex", );
     configureButtonBindings();
   }
-
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
@@ -48,8 +58,11 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    m_DriveTrainSubsystem.setDefaultCommand(m_CartesianDriveCommand);
-    c_ClimbingSubsystem.setDefaultCommand(c_RotateArmsCommand);
+    // m_DriveTrainSubsystem.setDefaultCommand(m_CartesianDriveCommand);
+    // c_intakeSubsystem.setDefaultCommand(c_runIntake);
+    c_ClimbingSubsystem.setDefaultCommand(c_climb);
+    SmartDashboard.putData("Run", new SetLEDs());
+    // c_ClimbingSubsystem.setDefaultCommand(c_RotateArmsCommand);
   }
 
   /**

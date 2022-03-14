@@ -36,11 +36,17 @@ public class DriveTrainSubsystem extends SubsystemBase {
   
   static DriveTrainSubsystem INSTANCE = new DriveTrainSubsystem();
 
-  // private void DriveTrainSubsystem() {
-  // }
+  public DriveTrainSubsystem() {
+    // frontRightFalcon.setInverted(true);
+    // backLeftFalcon.setInverted(true);
+  }
 
   public void cartesianDrive(double fowardSpeed, double sideSpeed, double rotation) {
-    m_driveTrain.driveCartesian(fowardSpeed, sideSpeed, rotation);
+    frontRightFalcon.setInverted(true);
+    backLeftFalcon.setInverted(false);
+    frontLeftFalcon.setInverted(false);
+    backRightFalcon.setInverted(true);
+    m_driveTrain.driveCartesian(fowardSpeed*.6, sideSpeed*(-.8), rotation*(-.5));
   }
 
   public void polarDrive(double forwardPower, double currentRotation, double rotationRate) {

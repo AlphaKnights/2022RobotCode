@@ -18,10 +18,14 @@ public class Falcon500 implements MotorController {
         if(speed<0.05&&speed>-0.05){
             motor.set(ControlMode.PercentOutput, 0);
             motor.setNeutralMode(NeutralMode.Coast);
+            // System.out.println("Coast");
+
         }
         else{          
             motor.set(ControlMode.PercentOutput, speed);
             motor.setNeutralMode(NeutralMode.Coast);
+            // System.out.println("Drive");
+
         }
     }
     
