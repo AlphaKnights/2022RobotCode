@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 
 public class SetLEDs extends CommandBase {
   final I2C arduino = new I2C(Port.kOnboard, 4);
@@ -39,7 +38,7 @@ public class SetLEDs extends CommandBase {
   @Override
   public void execute() {
     data = state.getString("Rainbow")+":"+led.getString("FFFFFF");
-    boolean success = arduino.transaction(data.getBytes(), data.getBytes().length, new byte[0], 0);}
+    arduino.transaction(data.getBytes(), data.getBytes().length, new byte[0], 0);}
 
   // Called once the command ends or is interrupted.
   @Override

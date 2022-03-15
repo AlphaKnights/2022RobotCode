@@ -44,7 +44,7 @@ public class ClimbUpCommand extends CommandBase {
   @Override
   public void execute() {
     if(climber.getBoolean(true)){
-      c_subsystem.moveArms(c_Joystick.getThrottle()*ClimbingConstants.armHeightSensitivity*climberSens.getDouble(1.0));
+      c_subsystem.moveArms(c_Joystick.getRawAxis(1)*ClimbingConstants.armHeightSensitivity*climberSens.getDouble(1.0));
     }
   }
 
