@@ -9,8 +9,11 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static class autoConstants{
+    public static class AutoConstants{
         public static final int numOfCalls = 100;
+        public static final double speed = -0.5;
+        public static final double sideSpeed = 0;
+        public static final double rotationSpeed = 0;
     }
 
     public static class DriveTrainConstants{
@@ -55,14 +58,21 @@ public final class Constants {
 
         public static final int rotateAxis = 0;
         public static final int climbAxis = 1;
-        public static final int armClimbButton = 1;
-        public static final int climbButton = 2;
     }
 
     public static class OI_Constants{
         public static final int m_joystickID = 0;//Logitech Controller
         public static final int c_joystickID = 1;//Flight Joystick Climb
         public static final int i_joystickID = 2;//Flight Joystick Intake
+
+        public static final int armClimbButton = 1;
+        public static final int climbButton = 2;
+        public static final int prepClimbButton = 4;
+        public static final int rotateClimberButton = 5;
+        public static final int rotateStaticHookButton = 6;
+
+        public static final int runIntakeButton = 1;
+        public static final int rotateIntakeHeadButton = 2;
     }
 
     public static class IntakeConstants{

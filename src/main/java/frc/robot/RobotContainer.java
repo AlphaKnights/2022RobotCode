@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants.ClimbingConstants;
 import frc.robot.Constants.OI_Constants;
 import frc.robot.commands.AutoCommand;
 import frc.robot.commands.CartesianDriveCommand;
@@ -48,13 +47,13 @@ public class RobotContainer {
   private final IntakeArmCommand i_rotateArmCommand = new IntakeArmCommand(i_intakeSubsystem, i_joystick);
   private final AutoCommand a_command = new AutoCommand(m_DriveTrainSubsystem);//Scuffed
   
-  private final JoystickButton c_trigger = new JoystickButton(c_joystick, ClimbingConstants.armClimbButton);
-  private final JoystickButton c_thumbButton_climber = new JoystickButton(c_joystick, ClimbingConstants.climbButton);
-  private final JoystickButton c_prepclimber = new JoystickButton(c_joystick, 4);
-  private final JoystickButton c_rotateClimber = new JoystickButton(c_joystick, 5);
-  private final JoystickButton c_rotateStatic = new JoystickButton(c_joystick, 6);
-  private final JoystickButton i_trigger = new JoystickButton(c_joystick, 1);
-  private final JoystickButton i_rotateHead = new JoystickButton(c_joystick, 2);
+  private final JoystickButton c_trigger = new JoystickButton(c_joystick, OI_Constants.armClimbButton);
+  private final JoystickButton c_thumbButton_climber = new JoystickButton(c_joystick, OI_Constants.climbButton);
+  private final JoystickButton c_prepclimber = new JoystickButton(c_joystick, OI_Constants.prepClimbButton);
+  private final JoystickButton c_rotateClimber = new JoystickButton(c_joystick, OI_Constants.rotateClimberButton);
+  private final JoystickButton c_rotateStatic = new JoystickButton(c_joystick, OI_Constants.rotateStaticHookButton);
+  private final JoystickButton i_trigger = new JoystickButton(c_joystick, OI_Constants.runIntakeButton);
+  private final JoystickButton i_rotateHead = new JoystickButton(c_joystick, OI_Constants.rotateIntakeHeadButton);
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {

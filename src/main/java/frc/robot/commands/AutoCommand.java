@@ -5,7 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
+import frc.robot.Constants.AutoConstants;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
 public class AutoCommand extends CommandBase {
@@ -31,9 +31,9 @@ public class AutoCommand extends CommandBase {
       // (Math.pow((AccelCurve.m*(joystick.getRawAxis(DriveTrainConstants.forward_axis))-AccelCurve.sub_amount), AccelCurve.exponent)+AccelCurve.add_amount),
       // (Math.pow((AccelCurve.m*(joystick.getRawAxis(DriveTrainConstants.side_axis))-AccelCurve.sub_amount), AccelCurve.exponent)+AccelCurve.add_amount),
       // (Math.pow((AccelCurve.m*(joystick.getRawAxis(DriveTrainConstants.rotation_axis))-AccelCurve.sub_amount), AccelCurve.exponent)+AccelCurve.add_amount)
-      -0.5,
-      0,
-      0);
+      AutoConstants.speed,
+      AutoConstants.sideSpeed,
+      AutoConstants.rotationSpeed);
     calls++;
   }
 
@@ -45,7 +45,7 @@ public class AutoCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(calls>Constants.autoConstants.numOfCalls){
+    if(calls>AutoConstants.numOfCalls){
       calls = 0;
       return true;
     }
