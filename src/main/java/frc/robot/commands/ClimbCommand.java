@@ -25,7 +25,9 @@ public class ClimbCommand extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    c_subsystem.climb(c_Joystick.getRawAxis(0));
+  }
 
   // Called once the command ends or is interrupted.
   @Override

@@ -7,20 +7,18 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.OI_Constants;
-import frc.robot.commands.ArmMovementCommandold;
+import frc.robot.commands.AutoCommand;
 import frc.robot.commands.CartesianDriveCommand;
 import frc.robot.commands.ClimbUpCommand;
-import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.SetLEDs;
 import frc.robot.subsystems.ClimbingSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -30,25 +28,23 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
   Joystick c_joystick = new Joystick(OI_Constants.c_joystickID);
-  // private final DriveTrainSubsystem m_DriveTrainSubsystem = DriveTrainSubsystem.getInstance();
-  // private final IntakeSubsystem c_intakeSubsystem = IntakeSubsystem.getInstance();
+  private final DriveTrainSubsystem m_DriveTrainSubsystem = DriveTrainSubsystem.getInstance();
+  private final IntakeSubsystem c_intakeSubsystem = IntakeSubsystem.getInstance();
   private final ClimbingSubsystem c_ClimbingSubsystem = ClimbingSubsystem.getInstance();
-  // private final ClimbingSubsystem c_ClimbingSubsystem = ClimbingSubsystem.getInstance();
 
-  // private final CartesianDriveCommand m_CartesianDriveCommand = new CartesianDriveCommand(m_DriveTrainSubsystem, c_joystick);
-  // private final RunIntake c_runIntake = new RunIntake(c_intakeSubsystem, c_joystick);
-  private final ClimbUpCommand c_climb = new ClimbUpCommand(c_ClimbingSubsystem, c_joystick);
-  // private final SetLEDs leds = new SetLEDs();
+  private final CartesianDriveCommand m_CartesianDriveCommand = new CartesianDriveCommand(m_DriveTrainSubsystem, c_joystick);
+  private final RunIntake c_runIntake = new RunIntake(c_intakeSubsystem, c_joystick);
+  // private final ClimbUpCommand c_climb = new ClimbUpCommand(c_ClimbingSubsystem, c_joystick);
+  private final AutoCommand a_command = new AutoCommand(m_DriveTrainSubsystem);
+  // private final ClimbUpCommand c_armMovementCommand = new ClimbUpCommand(c_ClimbingSubsystem, c_joystick);
+  
+  private final JoystickButton trigger = new JoystickButton(c_joystick, 1);
   // private final ArmMovementCommand c_RotateArmsCommand = new ArmMovementCommand(c_ClimbingSubsystem, c_joystick);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
-    // Shuffleboard.getTab("Leds").addString("Hex", );
     configureButtonBindings();
   }
   /**
@@ -58,9 +54,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // m_DriveTrainSubsystem.setDefaultCommand(m_CartesianDriveCommand);
-    // c_intakeSubsystem.setDefaultCommand(c_runIntake);
-    c_ClimbingSubsystem.setDefaultCommand(c_climb);
+    m_DriveTrainSubsystem.setDefaultCommand(m_CartesianDriveCommand);
+    c_intakeSubsystem.setDefaultCommand(c_runIntake);
+    // c_ClimbingSubsystem.setDefaultCommand(c_climb);
+    trigger.whileHeld(new ClimbUpCommand(c_ClimbingSubsystem, c_joystick));
     SmartDashboard.putData("Run", new SetLEDs());
     // c_ClimbingSubsystem.setDefaultCommand(c_RotateArmsCommand);
   }
@@ -72,6 +69,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return a_command;
   }
 }

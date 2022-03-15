@@ -9,6 +9,10 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public static class autoConstants{
+        public static final int numOfCalls = 100;
+    }
+
     public static class DriveTrainConstants{
         public static final int rightFrontFalconID = 1;
         public static final int rightBackFalconID = 4;
@@ -44,6 +48,7 @@ public final class Constants {
         public static final double armRotationSensitivity = 1;
         public static final double armHeightSensitivity = .75;
         public static final double climbSensitivity = 1;
+        public static final double climbReleaseSensitivity = .75;
     }
 
     public static class OI_Constants{

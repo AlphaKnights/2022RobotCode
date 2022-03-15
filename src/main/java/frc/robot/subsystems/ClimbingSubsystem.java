@@ -31,7 +31,7 @@ public class ClimbingSubsystem extends SubsystemBase {
     climbMotor.set(ControlMode.PercentOutput, speed);
   }
 
-  public void goUp(double amount){
+  public void moveArms(double amount){
     leftClimber.set(ControlMode.PercentOutput, amount);
     rightClimber.set(ControlMode.PercentOutput, amount);
   }
@@ -39,6 +39,10 @@ public class ClimbingSubsystem extends SubsystemBase {
   public void fixAdjustAngle(double amount){
     leftClimber.set(ControlMode.PercentOutput, amount*(-1));
     rightClimber.set(ControlMode.PercentOutput, amount);
+  }
+
+  public void climb(double amount){
+    climbMotor.set(ControlMode.PercentOutput, amount);
   }
 
   @Override

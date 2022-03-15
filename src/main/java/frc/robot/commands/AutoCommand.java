@@ -4,20 +4,17 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants.DriveTrainConstants;
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
-public class CartesianDriveCommand extends CommandBase {
-  /** Creates a new CartesianDrive. */
+public class AutoCommand extends CommandBase {
   private final DriveTrainSubsystem m_DriveTrainSubsystem;
-  private final Joystick joystick;
-  
-  public CartesianDriveCommand(DriveTrainSubsystem drivetrainsubsystem, Joystick _joystick) {
+  private int calls = 0;
+
+  public AutoCommand(DriveTrainSubsystem drivetrainsubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_DriveTrainSubsystem = drivetrainsubsystem;
-    joystick = _joystick;
     addRequirements(m_DriveTrainSubsystem);
   }
 
@@ -34,10 +31,12 @@ public class CartesianDriveCommand extends CommandBase {
       // (Math.pow((AccelCurve.m*(joystick.getRawAxis(DriveTrainConstants.forward_axis))-AccelCurve.sub_amount), AccelCurve.exponent)+AccelCurve.add_amount),
       // (Math.pow((AccelCurve.m*(joystick.getRawAxis(DriveTrainConstants.side_axis))-AccelCurve.sub_amount), AccelCurve.exponent)+AccelCurve.add_amount),
       // (Math.pow((AccelCurve.m*(joystick.getRawAxis(DriveTrainConstants.rotation_axis))-AccelCurve.sub_amount), AccelCurve.exponent)+AccelCurve.add_amount)
-      joystick.getRawAxis(DriveTrainConstants.forward_axis)*.8,
-      joystick.getRawAxis(DriveTrainConstants.side_axis)*-1,
-      joystick.getRawAxis(DriveTrainConstants.rotation_axis)*-.6);
+      -0.5,
+      0,
+      0);
+    calls++;
   }
+
 
   // Called once the command ends or is interrupted.
   @Override
@@ -46,6 +45,10 @@ public class CartesianDriveCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if(calls>Constants.autoConstants.numOfCalls){
+      calls = 0;
+      return true;
+    }
     return false;
   }
 }

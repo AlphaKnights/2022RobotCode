@@ -4,12 +4,14 @@
 
 package frc.robot.commands;
 
+import java.util.Map;
+
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.Constants.ClimbingConstants;
 import frc.robot.subsystems.ClimbingSubsystem;
 
@@ -20,10 +22,12 @@ public class ClimbUpCommand extends CommandBase {
   // private SimpleWidget slider = Shuffleboard.widget
    private NetworkTableEntry climber =
        tab.add("Enable Climber", false)
+       .withWidget(BuiltInWidgets.kToggleButton)
           .getEntry();
    private NetworkTableEntry climberSens =
        tab.add("Climber Sensitivity", 1.0)
-          .getEntry();
+       .withProperties(Map.of("min", 0, "max", 1))
+       .getEntry();
   /** Creates a new ClimbCommand. */
   public ClimbUpCommand(ClimbingSubsystem cSubsystem, Joystick cJoystick) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -40,7 +44,7 @@ public class ClimbUpCommand extends CommandBase {
   @Override
   public void execute() {
     if(climber.getBoolean(true)){
-      c_subsystem.goUp(c_Joystick.getRawAxis(0)*ClimbingConstants.armHeightSensitivity);
+      c_subsystem.moveArms(c_Joystick.getThrottle()*ClimbingConstants.armHeightSensitivity*climberSens.getDouble(1.0));
     }
   }
 
