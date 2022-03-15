@@ -28,27 +28,35 @@ public final class Constants {
         public static final int rotation_axis = 0;
     }
 
-    public static class AccelCurve{
-        public static final int x = 0;
-        public static final double sensitive = 0;
-        public static final double exponent = 3;
-        public static final double startPoint = 50;
-        public static final double m = Math.pow(startPoint, (1/exponent))/startPoint;
-        public static final double sub_amount = m*startPoint;
-        public static final double add_amount = startPoint;
+    /**Does NOT work */
+    // public static class AccelCurve{
+    //     public static final int x = 0;
+    //     public static final double sensitive = 0;
+    //     public static final double exponent = 3;
+    //     public static final double startPoint = 50;
+    //     public static final double m = Math.pow(startPoint, (1/exponent))/startPoint;
+    //     public static final double sub_amount = m*startPoint;
+    //     public static final double add_amount = startPoint;
         // example of curve, this is actually implemented in the subsystem/command
         // public static final double accelCurve = (Math.pow((m*x-sub_amount), exponent)+add_amount); 
-    }
+    // }
 
     public static class ClimbingConstants{
         public static final int climbMotor = 12;
         public static final int armRotationMotor = 14;
         public static final int armElevationMotorLeft = 15;
         public static final int armElevationMotorRight = 16;
+
         public static final double armRotationSensitivity = 1;
+        public static final double staticArmRotationSensitivity = .75;
         public static final double armHeightSensitivity = .75;
         public static final double climbSensitivity = 1;
         public static final double climbReleaseSensitivity = .75;
+
+        public static final int rotateAxis = 0;
+        public static final int climbAxis = 1;
+        public static final int armClimbButton = 1;
+        public static final int climbButton = 2;
     }
 
     public static class OI_Constants{
@@ -63,6 +71,9 @@ public final class Constants {
         public static final int intakeRotationMotorID = 10;
         public static final int maxRevolutions = 48;
         public static int location = 0;
+
+        public static final int intakeArmRotateAxis = 0;
+        public static final int intakeHeadRotateAxis = 1;
     }
 }
 

@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.ClimbingConstants;
 import frc.robot.subsystems.ClimbingSubsystem;
 
 public class ClimbCommand extends CommandBase {
@@ -26,7 +27,7 @@ public class ClimbCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    c_subsystem.climb(c_Joystick.getRawAxis(1));
+    c_subsystem.climb(c_Joystick.getRawAxis(ClimbingConstants.climbAxis));
   }
 
   // Called once the command ends or is interrupted.

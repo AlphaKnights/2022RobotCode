@@ -4,17 +4,20 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants.ClimbingConstants;
-import frc.robot.subsystems.ClimbingSubsystem;
+import frc.robot.Constants.IntakeConstants;
+import frc.robot.subsystems.IntakeSubsystem;
 
-public class PrepareClimbCommand extends CommandBase {
-  private final ClimbingSubsystem c_subsystem;
-  /** Creates a new ClimbCommand. */
-  public PrepareClimbCommand(ClimbingSubsystem cSubsystem) {
+public class IntakeHeadRotateCommand extends CommandBase {
+  private final IntakeSubsystem i_subsystem;
+  private final Joystick i_Joystick;
+  /** Creates a new IntakeHeadRotateCommand. */
+  public IntakeHeadRotateCommand(IntakeSubsystem iSubsystem, Joystick iJoystick) {
     // Use addRequirements() here to declare subsystem dependencies.
-    c_subsystem = cSubsystem;
-    addRequirements(c_subsystem);
+    i_subsystem = iSubsystem;
+    i_Joystick = iJoystick;
+    addRequirements(i_subsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -24,7 +27,8 @@ public class PrepareClimbCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    c_subsystem.climb(-1*ClimbingConstants.climbReleaseSensitivity);}
+      i_subsystem.RotateToPosition(i_Joystick.getRawAxis(IntakeConstants.intakeHeadRotateAxis));
+  }
 
   // Called once the command ends or is interrupted.
   @Override

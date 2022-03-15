@@ -25,6 +25,7 @@ public class ClimbingSubsystem extends SubsystemBase {
 
   public void changeAngle(double amount){
     rotatorMotor.set(ControlMode.PercentOutput, amount);
+    rotatorMotor.setNeutralMode(NeutralMode.Brake);
   }
 
   public void prepClimb(double speed){

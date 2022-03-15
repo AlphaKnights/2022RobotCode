@@ -4,16 +4,19 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.ClimbingConstants;
 import frc.robot.subsystems.ClimbingSubsystem;
 
-public class PrepareClimbCommand extends CommandBase {
+public class RotateClimberCommand extends CommandBase {
   private final ClimbingSubsystem c_subsystem;
-  /** Creates a new ClimbCommand. */
-  public PrepareClimbCommand(ClimbingSubsystem cSubsystem) {
+  private final Joystick c_Joystick;
+  /** Creates a new RotateClimberCommand. */
+  public RotateClimberCommand(ClimbingSubsystem cSubsystem, Joystick cJoystick) {
     // Use addRequirements() here to declare subsystem dependencies.
     c_subsystem = cSubsystem;
+    c_Joystick = cJoystick;
     addRequirements(c_subsystem);
   }
 
@@ -24,7 +27,8 @@ public class PrepareClimbCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    c_subsystem.climb(-1*ClimbingConstants.climbReleaseSensitivity);}
+      c_subsystem.moveArms(c_Joystick.getRawAxis(ClimbingConstants.rotateAxis)*ClimbingConstants.armRotationSensitivity);
+  }
 
   // Called once the command ends or is interrupted.
   @Override

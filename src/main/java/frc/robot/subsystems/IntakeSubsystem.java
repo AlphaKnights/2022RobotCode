@@ -12,7 +12,7 @@ public class IntakeSubsystem extends SubsystemBase {
   static IntakeSubsystem INSTANCE = new IntakeSubsystem();
   TalonSRX IntakingMotor = new TalonSRX(IntakeConstants.intakeMotorID);
   TalonFX rotator = new TalonFX(Constants.IntakeConstants.intakeRotationMotorID);
-  private static double position = 0;
+  // private static double position = 0;
   /**
    * Creates a new IntakeSubsystem.
    */
@@ -23,8 +23,8 @@ public class IntakeSubsystem extends SubsystemBase {
   public void go(double val){
       IntakingMotor.set(ControlMode.PercentOutput, val);
   }
-  public void RotateToPosition(int angle){
-    rotator.set(ControlMode.Position, 0);
+  public void RotateToPosition(double d){
+    rotator.set(ControlMode.Position, d);
   }
 
   @Override

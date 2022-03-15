@@ -8,7 +8,7 @@ import java.util.Map;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+// import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -20,10 +20,10 @@ public class ClimbUpCommand extends CommandBase {
   private final Joystick c_Joystick;
   private ShuffleboardTab tab = Shuffleboard.getTab("General");
   // private SimpleWidget slider = Shuffleboard.widget
-   private NetworkTableEntry climber =
-       tab.add("Enable Climber", false)
-       .withWidget(BuiltInWidgets.kToggleButton)
-          .getEntry();
+  //  private NetworkTableEntry climber =
+  //      tab.add("Enable Climber", false)
+  //      .withWidget(BuiltInWidgets.kToggleButton)
+  //         .getEntry();
    private NetworkTableEntry climberSens =
        tab.add("Climber Sensitivity", 1.0)
        .withProperties(Map.of("min", 0, "max", 1))
@@ -43,9 +43,7 @@ public class ClimbUpCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(climber.getBoolean(true)){
       c_subsystem.moveArms(c_Joystick.getRawAxis(1)*ClimbingConstants.armHeightSensitivity*climberSens.getDouble(1.0));
-    }
   }
 
   // Called once the command ends or is interrupted.
