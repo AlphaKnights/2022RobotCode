@@ -4,10 +4,19 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.controller.RamseteController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.math.trajectory.TrajectoryConfig;
+import edu.wpi.first.math.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants.AutoConstants;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OI_Constants;
 import frc.robot.commands.AutoCommand;
 import frc.robot.commands.CartesianDriveCommand;
@@ -24,6 +33,7 @@ import frc.robot.subsystems.ClimbingSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -70,11 +80,13 @@ public class RobotContainer {
     m_DriveTrainSubsystem.setDefaultCommand(m_CartesianDriveCommand);
     c_ClimbingSubsystem.setDefaultCommand(c_RotateClimberCommand);
     i_intakeSubsystem.setDefaultCommand(i_rotateArmCommand);
+
     c_trigger.whileHeld(new ClimbUpCommand(c_ClimbingSubsystem, c_joystick));
     c_prepclimber.whileHeld(new PrepareClimbCommand(c_ClimbingSubsystem));
     c_thumbButton_climber.whileHeld(new ClimbCommand(c_ClimbingSubsystem, c_joystick));
     c_rotateClimber.toggleWhenPressed(new RotateClimberCommand(c_ClimbingSubsystem, c_joystick));
     c_rotateStatic.toggleWhenPressed(new RotateStaticHooks(c_ClimbingSubsystem, c_joystick));
+
     i_trigger.toggleWhenPressed(new RunIntake(i_intakeSubsystem, i_joystick));
     i_rotateHead.toggleWhenPressed(new IntakeHeadRotateCommand(i_intakeSubsystem, i_joystick));
     
@@ -87,7 +99,28 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
+  public Command getAutonomousCommand(Trajectory trag) {
+
+// RamseteCommand ramseteCommand =
+    // new RamseteCommand(
+    //   trag,
+    //     m_DriveTrainSubsystem::getPose,
+    //     new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
+    //     new SimpleMotorFeedforward(
+    //         DriveConstants.ksVolts,
+    //         DriveConstants.kvVoltSecondsPerMeter,
+    //         DriveConstants.kaVoltSecondsSquaredPerMeter),
+    //     DriveConstants.kDriveKinematics,
+    //     m_DriveTrainSubsystem::getWheelSpeeds,
+    //     new PIDController(DriveConstants.kPDriveVel, 0, 0),
+    //     new PIDController(DriveConstants.kPDriveVel, 0, 0),
+    //     // RamseteCommand passes volts to the callback
+    //     m_DriveTrainSubsystem::tankDriveVolts,
+    //     m_DriveTrainSubsystem);
+
+  // Reset odometry to the starting pose of the trajectory.
+  m_DriveTrainSubsystem.resetOdometry(trag.getInitialPose());
+  // Run path following command, then stop at the end.
     // An ExampleCommand will run in autonomous
     return a_command;
   }

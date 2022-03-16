@@ -1,5 +1,7 @@
 package frc.robot;
 
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -14,6 +16,8 @@ public final class Constants {
         public static final double speed = -0.5;
         public static final double sideSpeed = 0;
         public static final double rotationSpeed = 0;
+        public static final double kRamseteZeta = 0;
+        public static final double kRamseteB = 0;
     }
 
     public static class DriveTrainConstants{
@@ -30,19 +34,6 @@ public final class Constants {
         public static final int side_axis = 4;
         public static final int rotation_axis = 0;
     }
-
-    /**Does NOT work */
-    // public static class AccelCurve{
-    //     public static final int x = 0;
-    //     public static final double sensitive = 0;
-    //     public static final double exponent = 3;
-    //     public static final double startPoint = 50;
-    //     public static final double m = Math.pow(startPoint, (1/exponent))/startPoint;
-    //     public static final double sub_amount = m*startPoint;
-    //     public static final double add_amount = startPoint;
-        // example of curve, this is actually implemented in the subsystem/command
-        // public static final double accelCurve = (Math.pow((m*x-sub_amount), exponent)+add_amount); 
-    // }
 
     public static class ClimbingConstants{
         public static final int climbMotor = 12;
@@ -85,6 +76,32 @@ public final class Constants {
         public static final int intakeArmRotateAxis = 0;
         public static final int intakeHeadRotateAxis = 1;
     }
+
+    public static class DriveConstants{
+
+        public static final double ksVolts = 0;
+        public static final double kvVoltSecondsPerMeter = 0;
+        public static final double kaVoltSecondsSquaredPerMeter = 0;
+        public static final double kPDriveVel = 0;
+        
+        public static final DifferentialDriveKinematics kDriveKinematics =
+  new DifferentialDriveKinematics(.503);
+
+    }
+
+    /**Does NOT work */
+    // public static class AccelCurve{
+    //     public static final int x = 0;
+    //     public static final double sensitive = 0;
+    //     public static final double exponent = 3;
+    //     public static final double startPoint = 50;
+    //     public static final double m = Math.pow(startPoint, (1/exponent))/startPoint;
+    //     public static final double sub_amount = m*startPoint;
+    //     public static final double add_amount = startPoint;
+        // example of curve, this is actually implemented in the subsystem/command
+        // public static final double accelCurve = (Math.pow((m*x-sub_amount), exponent)+add_amount); 
+    // }
+
 }
 
 /** 

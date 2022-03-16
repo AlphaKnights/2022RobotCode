@@ -4,11 +4,11 @@ import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 public class RunIntake extends CommandBase {
   private final IntakeSubsystem m_sub;
-  private Joystick driveJoystick;
-  public RunIntake(IntakeSubsystem l, Joystick m_driveJoystick) {
+  private Joystick i_joystick;
+  public RunIntake(IntakeSubsystem l, Joystick iJoystick) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    driveJoystick = m_driveJoystick;
+    i_joystick = iJoystick;
     m_sub=l;
     addRequirements(m_sub);
   }
@@ -22,7 +22,8 @@ public class RunIntake extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    m_sub.go(driveJoystick.getRawAxis(3)-driveJoystick.getRawAxis(2));
+    // m_sub.go(i_joystick.getRawAxis(IntakeConstants.)-i_joystick.getRawAxis(2));
+    m_sub.go((-2)*(((i_joystick.getPOV()/180))-0.5));
     
   }
 
