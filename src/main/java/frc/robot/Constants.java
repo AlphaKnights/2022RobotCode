@@ -13,6 +13,12 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    
+    public static double AccelCurve(double x) {
+        // uses radians
+        return (Math.abs(x) * (Math.sin(3.0 * Math.sqrt(Math.abs(7.0 * x))) + (2.0 * Math.abs(7.0 * x)))) / (15 * x);
+    }
+    
     public static class DriveTrainConstants{
         public static final int rightFrontFalconID = 0; 
         public static final int rightBackFalconID = 1;
