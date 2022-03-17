@@ -27,6 +27,12 @@ public class RunIntake extends CommandBase {
     
   }
 
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
+    m_sub.go(0);
+  }
+
   // Make this return true when this Command no longer needs to run execute()
   @Override
   public boolean isFinished() {

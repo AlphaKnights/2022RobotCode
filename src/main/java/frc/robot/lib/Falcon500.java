@@ -46,6 +46,11 @@ public class Falcon500 implements MotorController {
         motor2.setInverted(isInverted);
     }
 
+    public void setInverted(boolean isInverted, boolean isInverted2) {
+        motor.setInverted(isInverted);
+        motor2.setInverted(isInverted2);
+    }
+
     @Override
     public boolean getInverted() {
         return motor.getInverted();

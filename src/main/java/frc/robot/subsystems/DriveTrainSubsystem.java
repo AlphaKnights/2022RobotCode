@@ -81,9 +81,10 @@ public class DriveTrainSubsystem extends SubsystemBase {
   }
 
   public void cartesianDrive(double fowardSpeed, double sideSpeed, double rotation) {
-    frontRightFalcon.setInverted(true);
+    // frontRightFalcon.setInverted(true, true);
+    frontRightFalcon.setInverted(false, false);
     // backLeftFalcon.setInverted(false);
-    frontLeftFalcon.setInverted(false);
+    frontLeftFalcon.setInverted(false, false);
     // backRightFalcon.setInverted(true);\
     m_driveTrain.tankDrive(fowardSpeed*.6, sideSpeed*(-.8));
   }
