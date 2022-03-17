@@ -22,8 +22,8 @@ public class RunIntake extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    // m_sub.go(i_joystick.getRawAxis(IntakeConstants.)-i_joystick.getRawAxis(2));
-    m_sub.go((-2)*(((i_joystick.getPOV()/180))-0.5));
+    m_sub.go(i_joystick.getRawAxis(3)-i_joystick.getRawAxis(2));
+    // m_sub.go((-2)*(((i_joystick.getPOV()/180))-0.5));
     
   }
 

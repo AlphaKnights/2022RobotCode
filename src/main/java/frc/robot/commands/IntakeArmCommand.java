@@ -27,7 +27,7 @@ public class IntakeArmCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      i_subsystem.RotateToPosition(i_Joystick.getRawAxis(IntakeConstants.intakeArmRotateAxis));
+      i_subsystem.RotateToPosition(((i_Joystick.getPOV()/180)-.5)*(-2));
   }
 
   // Called once the command ends or is interrupted.

@@ -74,7 +74,7 @@ public final class Constants {
         public static int location = 0;
 
         public static final int intakeArmRotateAxis = 0;
-        public static final int intakeHeadRotateAxis = 1;
+        public static final int intakeHeadRotateAxis = 4;
     }
 
     public static class DriveConstants{

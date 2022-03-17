@@ -46,7 +46,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   
   Joystick m_joystick = new Joystick(OI_Constants.m_joystickID);
-  Joystick i_joystick = new Joystick(OI_Constants.i_joystickID);
+  // Joystick i_joystick = new Joystick(OI_Constants.i_joystickID);
   Joystick c_joystick = new Joystick(OI_Constants.c_joystickID);
   private final DriveTrainSubsystem m_DriveTrainSubsystem = DriveTrainSubsystem.getInstance();
   private final IntakeSubsystem i_intakeSubsystem = IntakeSubsystem.getInstance();
@@ -54,7 +54,7 @@ public class RobotContainer {
 
   private final CartesianDriveCommand m_CartesianDriveCommand = new CartesianDriveCommand(m_DriveTrainSubsystem, m_joystick);
   private final RotateClimberCommand c_RotateClimberCommand = new RotateClimberCommand(c_ClimbingSubsystem, c_joystick);
-  private final IntakeArmCommand i_rotateArmCommand = new IntakeArmCommand(i_intakeSubsystem, i_joystick);
+  private final IntakeArmCommand i_rotateArmCommand = new IntakeArmCommand(i_intakeSubsystem, m_joystick);
   private final AutoCommand a_command = new AutoCommand(m_DriveTrainSubsystem);//Scuffed
   
   private final JoystickButton c_trigger = new JoystickButton(c_joystick, OI_Constants.armClimbButton);
@@ -87,8 +87,8 @@ public class RobotContainer {
     c_rotateClimber.toggleWhenPressed(new RotateClimberCommand(c_ClimbingSubsystem, c_joystick));
     c_rotateStatic.toggleWhenPressed(new RotateStaticHooks(c_ClimbingSubsystem, c_joystick));
 
-    i_trigger.toggleWhenPressed(new RunIntake(i_intakeSubsystem, i_joystick));
-    i_rotateHead.toggleWhenPressed(new IntakeHeadRotateCommand(i_intakeSubsystem, i_joystick));
+    i_trigger.toggleWhenPressed(new RunIntake(i_intakeSubsystem, m_joystick));
+    i_rotateHead.toggleWhenPressed(new IntakeHeadRotateCommand(i_intakeSubsystem, m_joystick));
     
     SmartDashboard.putData("Run", new SetLEDs());
     // c_ClimbingSubsystem.setDefaultCommand(c_RotateArmsCommand);
