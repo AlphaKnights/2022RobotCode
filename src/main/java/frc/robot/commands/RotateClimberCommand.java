@@ -27,13 +27,14 @@ public class RotateClimberCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      c_subsystem.moveArms(c_Joystick.getRawAxis(ClimbingConstants.rotateAxis)*ClimbingConstants.armRotationSensitivity);
+      c_subsystem.changeAngle(c_Joystick.getRawAxis(ClimbingConstants.rotateAxis)*ClimbingConstants.armRotationSensitivity);
+      System.out.println(c_Joystick.getRawAxis(ClimbingConstants.rotateAxis)*ClimbingConstants.armRotationSensitivity);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    c_subsystem.moveArms(0);
+    c_subsystem.changeAngle(0);
   }
 
   // Returns true when the command should end.

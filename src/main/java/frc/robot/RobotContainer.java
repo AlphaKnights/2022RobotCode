@@ -54,7 +54,7 @@ public class RobotContainer {
   private final ClimbingSubsystem c_ClimbingSubsystem = ClimbingSubsystem.getInstance();
 
   private final CartesianDriveCommand m_CartesianDriveCommand = new CartesianDriveCommand(m_DriveTrainSubsystem, m_joystick);
-  private final RotateClimberCommand c_RotateClimberCommand = new RotateClimberCommand(c_ClimbingSubsystem, c_joystick);
+  // private final RotateClimberCommand c_RotateC limberCommand = new RotateClimberCommand(c_ClimbingSubsystem, c_joystick);
   private final IntakeArmCommand i_rotateArmCommand = new IntakeArmCommand(i_intakeSubsystem, i_joystick);
   private final ComplexAuto a_command = new ComplexAuto(m_DriveTrainSubsystem);//Scuffed
   
@@ -80,17 +80,17 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     m_DriveTrainSubsystem.setDefaultCommand(m_CartesianDriveCommand);
-    c_ClimbingSubsystem.setDefaultCommand(c_RotateClimberCommand);
+    // c_ClimbingSubsystem.setDefaultCommand(c_RotateClimberCommand);
     i_rotateHead2.whileHeld(i_rotateArmCommand);
 
     c_trigger.whileHeld(new ClimbUpCommand(c_ClimbingSubsystem, c_joystick));
     c_prepclimber.whileHeld(new PrepareClimbCommand(c_ClimbingSubsystem));
     c_thumbButton_climber.whileHeld(new ClimbCommand(c_ClimbingSubsystem, c_joystick));
-    c_rotateClimber.toggleWhenPressed(new RotateClimberCommand(c_ClimbingSubsystem, c_joystick));
-    c_rotateStatic.toggleWhenPressed(new RotateStaticHooks(c_ClimbingSubsystem, c_joystick));
+    c_rotateClimber.whileHeld(new RotateClimberCommand(c_ClimbingSubsystem, c_joystick));
+    c_rotateStatic.whileHeld(new RotateStaticHooks(c_ClimbingSubsystem, c_joystick));
 
     i_trigger.whileHeld(new RunIntake(i_intakeSubsystem, i_joystick));
-    i_rotateHead.toggleWhenPressed(new IntakeHeadRotateCommand(i_intakeSubsystem, i_joystick));
+    i_rotateHead.whileHeld(new IntakeHeadRotateCommand(i_intakeSubsystem, i_joystick));
     
     SmartDashboard.putData("Run", new SetLEDs());
     // c_ClimbingSubsystem.setDefaultCommand(c_RotateArmsCommand);

@@ -42,7 +42,7 @@ public final class Constants {
         public static final int armElevationMotorLeft = 15;
         public static final int armElevationMotorRight = 16;
 
-        public static final double armRotationSensitivity = 1;
+        public static final double armRotationSensitivity = .25;
         public static final double staticArmRotationSensitivity = .75;
         public static final double armHeightSensitivity = .75;
         public static final double climbSensitivity = 1;
