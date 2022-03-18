@@ -22,6 +22,7 @@ import frc.robot.commands.AutoCommand;
 import frc.robot.commands.CartesianDriveCommand;
 import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.ClimbUpCommand;
+import frc.robot.commands.ComplexAuto;
 import frc.robot.commands.IntakeArmCommand;
 import frc.robot.commands.IntakeHeadRotateCommand;
 import frc.robot.commands.PrepareClimbCommand;
@@ -55,7 +56,7 @@ public class RobotContainer {
   private final CartesianDriveCommand m_CartesianDriveCommand = new CartesianDriveCommand(m_DriveTrainSubsystem, m_joystick);
   private final RotateClimberCommand c_RotateClimberCommand = new RotateClimberCommand(c_ClimbingSubsystem, c_joystick);
   private final IntakeArmCommand i_rotateArmCommand = new IntakeArmCommand(i_intakeSubsystem, i_joystick);
-  private final AutoCommand a_command = new AutoCommand(m_DriveTrainSubsystem);//Scuffed
+  private final ComplexAuto a_command = new ComplexAuto(m_DriveTrainSubsystem);//Scuffed
   
   private final JoystickButton c_trigger = new JoystickButton(c_joystick, OI_Constants.armClimbButton);
   private final JoystickButton c_thumbButton_climber = new JoystickButton(c_joystick, OI_Constants.climbButton);
@@ -82,11 +83,11 @@ public class RobotContainer {
     c_ClimbingSubsystem.setDefaultCommand(c_RotateClimberCommand);
     i_rotateHead2.whileHeld(i_rotateArmCommand);
 
-    // c_trigger.whileHeld(new ClimbUpCommand(c_ClimbingSubsystem, c_joystick));
-    // c_prepclimber.whileHeld(new PrepareClimbCommand(c_ClimbingSubsystem));
-    // c_thumbButton_climber.whileHeld(new ClimbCommand(c_ClimbingSubsystem, c_joystick));
-    // c_rotateClimber.toggleWhenPressed(new RotateClimberCommand(c_ClimbingSubsystem, c_joystick));
-    // c_rotateStatic.toggleWhenPressed(new RotateStaticHooks(c_ClimbingSubsystem, c_joystick));
+    c_trigger.whileHeld(new ClimbUpCommand(c_ClimbingSubsystem, c_joystick));
+    c_prepclimber.whileHeld(new PrepareClimbCommand(c_ClimbingSubsystem));
+    c_thumbButton_climber.whileHeld(new ClimbCommand(c_ClimbingSubsystem, c_joystick));
+    c_rotateClimber.toggleWhenPressed(new RotateClimberCommand(c_ClimbingSubsystem, c_joystick));
+    c_rotateStatic.toggleWhenPressed(new RotateStaticHooks(c_ClimbingSubsystem, c_joystick));
 
     i_trigger.whileHeld(new RunIntake(i_intakeSubsystem, i_joystick));
     i_rotateHead.toggleWhenPressed(new IntakeHeadRotateCommand(i_intakeSubsystem, i_joystick));

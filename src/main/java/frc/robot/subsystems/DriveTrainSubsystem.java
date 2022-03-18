@@ -86,7 +86,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
     // backLeftFalcon.setInverted(false);
     frontLeftFalcon.setInverted(false, false);
     // backRightFalcon.setInverted(true);\
-    m_driveTrain.arcadeDrive(fowardSpeed, rotation);
+    m_driveTrain.arcadeDrive(fowardSpeed, rotation*(-1));
   }
 
   // public void polarDrive(double forwardPower, double currentRotation, double rotationRate) {

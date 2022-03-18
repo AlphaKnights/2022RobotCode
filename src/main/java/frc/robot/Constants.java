@@ -12,12 +12,13 @@ import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
  */
 public final class Constants {
     public static class AutoConstants{
-        public static final int numOfCalls = 100;
+        public static final int numOfCalls = 50;
         public static final double speed = -0.5;
         public static final double sideSpeed = 0;
         public static final double rotationSpeed = 0;
         public static final double kRamseteZeta = 0;
         public static final double kRamseteB = 0;
+        public static int calls = 0;
     }
 
     public static class DriveTrainConstants{
