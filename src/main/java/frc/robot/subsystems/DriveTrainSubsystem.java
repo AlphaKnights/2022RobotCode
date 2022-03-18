@@ -32,9 +32,9 @@ public class DriveTrainSubsystem extends SubsystemBase {
   // private final AHRS navX = new AHRS(SerialPort.Port.kUSB);
 
   Falcon500 frontRightFalcon = new Falcon500(DriveTrainConstants.rightFrontFalconID,DriveTrainConstants.rightBackFalconID);
-  // Falcon500 backRightFalcon = new Falcon500();
+  // Falcon500 backRightFalcon = new Falcon500(DriveTrainConstants.rightBackFalconID);
   Falcon500 frontLeftFalcon = new Falcon500(DriveTrainConstants.leftFrontFalconID,DriveTrainConstants.leftBackFalconID);
-  // Falcon500 backLeftFalcon = new Falcon500();
+  // Falcon500 backLeftFalcon = new Falcon500(DriveTrainConstants.leftBackFalconID);
 
   DifferentialDrive m_driveTrain = new DifferentialDrive(frontLeftFalcon, frontRightFalcon);
   
@@ -80,13 +80,13 @@ public class DriveTrainSubsystem extends SubsystemBase {
     m_odometry = new DifferentialDriveOdometry(m_gyro.getRotation2d());
   }
 
-  public void cartesianDrive(double fowardSpeed, double sideSpeed, double rotation) {
-    // frontRightFalcon.setInverted(true, true);
-    frontRightFalcon.setInverted(false, false);
+  public void cartesianDrive(double fowardSpeed, double rotation, double garbo) {
+    frontRightFalcon.setInverted(true, true);
+    // frontRightFalcon.setInverted(false, false);
     // backLeftFalcon.setInverted(false);
     frontLeftFalcon.setInverted(false, false);
     // backRightFalcon.setInverted(true);\
-    m_driveTrain.tankDrive(fowardSpeed*.6, sideSpeed*(-.8));
+    m_driveTrain.arcadeDrive(fowardSpeed, rotation);
   }
 
   // public void polarDrive(double forwardPower, double currentRotation, double rotationRate) {

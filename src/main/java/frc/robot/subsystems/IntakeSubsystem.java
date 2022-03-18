@@ -11,7 +11,7 @@ import frc.robot.Constants.IntakeConstants;
 public class IntakeSubsystem extends SubsystemBase {
   static IntakeSubsystem INSTANCE = new IntakeSubsystem();
   TalonSRX IntakingMotor = new TalonSRX(IntakeConstants.intakeMotorID);
-  TalonFX rotator = new TalonFX(Constants.IntakeConstants.intakeRotationMotorID);
+  TalonFX rotator = new TalonFX(10);
   // private static double position = 0;
   /**
    * Creates a new IntakeSubsystem.
@@ -24,7 +24,8 @@ public class IntakeSubsystem extends SubsystemBase {
       IntakingMotor.set(ControlMode.PercentOutput, val);
   }
   public void RotateToPosition(double d){
-    rotator.set(ControlMode.Position, d);
+    rotator.set(ControlMode.PercentOutput, d);
+    System.out.println(d);
   }
 
   @Override

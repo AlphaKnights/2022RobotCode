@@ -31,8 +31,8 @@ public final class Constants {
         // public static final int side_axis = 0;
         // public static final int rotation_axis = 4;
         public static final int forward_axis = 1;
-        public static final int side_axis = 4;
-        public static final int rotation_axis = 0;
+        public static final int side_axis = 0;
+        public static final int rotation_axis = 4;
     }
 
     public static class ClimbingConstants{
@@ -74,7 +74,7 @@ public final class Constants {
         public static int location = 0;
 
         public static final int intakeArmRotateAxis = 0;
-        public static final int intakeHeadRotateAxis = 4;
+        public static final int intakeHeadRotateAxis = 1;
     }
 
     public static class DriveConstants{
