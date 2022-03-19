@@ -28,7 +28,6 @@ public class RotateClimberCommand extends CommandBase {
   @Override
   public void execute() {
       c_subsystem.changeAngle(c_Joystick.getRawAxis(ClimbingConstants.rotateAxis)*ClimbingConstants.armRotationSensitivity);
-      System.out.println(c_Joystick.getRawAxis(ClimbingConstants.rotateAxis)*ClimbingConstants.armRotationSensitivity);
   }
 
   // Called once the command ends or is interrupted.

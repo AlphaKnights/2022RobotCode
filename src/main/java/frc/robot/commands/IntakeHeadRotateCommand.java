@@ -12,6 +12,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class IntakeHeadRotateCommand extends CommandBase {
   private final IntakeSubsystem i_subsystem;
   private final Joystick i_Joystick;
+  double angle;
   /** Creates a new IntakeHeadRotateCommand. */
   public IntakeHeadRotateCommand(IntakeSubsystem iSubsystem, Joystick iJoystick) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -27,7 +28,10 @@ public class IntakeHeadRotateCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      i_subsystem.RotateToPosition(i_Joystick.getRawAxis(IntakeConstants.intakeHeadRotateAxis));
+    angle = Math.pow(i_Joystick.getRawAxis(0), 5/3);
+    if(((Math.abs(angle)-.05)>=0.5)){
+      i_subsystem.RotateHead(angle);
+    }
   }
 
   // Called once the command ends or is interrupted.

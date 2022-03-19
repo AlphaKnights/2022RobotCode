@@ -60,8 +60,8 @@ public final class Constants {
         public static final int armClimbButton = 1;
         public static final int climbButton = 2;
         public static final int prepClimbButton = 4;
-        public static final int rotateClimberButton = 5;
-        public static final int rotateStaticHookButton = 6;
+        public static final int rotateClimberButton = 2;
+        // public static final int rotateStaticHookButton = 6;
 
         public static final int runIntakeButton = 1;
         public static final int rotateIntakeHeadButton = 2;
@@ -73,9 +73,10 @@ public final class Constants {
         public static final int intakeRotationMotorID = 10;
         public static final int maxRevolutions = 48;
         public static int location = 0;
+        public static final double armSens = 0.25;
 
-        public static final int intakeArmRotateAxis = 0;
-        public static final int intakeHeadRotateAxis = 1;
+        public static final int intakeArmRotateAxis = 1;
+        public static final int intakeHeadRotateAxis = 0;
     }
 
     public static class DriveConstants{

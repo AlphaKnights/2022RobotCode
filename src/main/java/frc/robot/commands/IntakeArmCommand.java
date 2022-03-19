@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Constants.IntakeConstants;
 import frc.robot.subsystems.IntakeSubsystem;
 
@@ -29,7 +30,7 @@ public class IntakeArmCommand extends CommandBase {
   public void execute() {
       // i_subsystem.RotateToPosition(((i_Joystick.getPOV()/180)-.5)*(-2));
       
-      i_subsystem.RotateToPosition(i_Joystick.getRawAxis(1));
+      i_subsystem.RotateToPosition(i_Joystick.getRawAxis(1)*Constants.IntakeConstants.armSens);
   }
 
   // Called once the command ends or is interrupted.

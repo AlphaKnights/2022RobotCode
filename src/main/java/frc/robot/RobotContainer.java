@@ -47,8 +47,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   
   Joystick m_joystick = new Joystick(OI_Constants.m_joystickID);
-  Joystick i_joystick = new Joystick(OI_Constants.i_joystickID);
-  Joystick c_joystick = new Joystick(OI_Constants.c_joystickID);
+  Joystick i_joystick = new Joystick(1);
+  Joystick c_joystick = new Joystick(2);
   private final DriveTrainSubsystem m_DriveTrainSubsystem = DriveTrainSubsystem.getInstance();
   private final IntakeSubsystem i_intakeSubsystem = IntakeSubsystem.getInstance();
   private final ClimbingSubsystem c_ClimbingSubsystem = ClimbingSubsystem.getInstance();
@@ -62,11 +62,12 @@ public class RobotContainer {
   private final JoystickButton c_thumbButton_climber = new JoystickButton(c_joystick, OI_Constants.climbButton);
   private final JoystickButton c_prepclimber = new JoystickButton(c_joystick, OI_Constants.prepClimbButton);
   private final JoystickButton c_rotateClimber = new JoystickButton(c_joystick, OI_Constants.rotateClimberButton);
-  private final JoystickButton c_rotateStatic = new JoystickButton(c_joystick, OI_Constants.rotateStaticHookButton);
-  private final JoystickButton i_trigger = new JoystickButton(i_joystick, OI_Constants.runIntakeButton);
+  // private final JoystickButton c_rotateStatic = new JoystickButton(c_joystick, OI_Constants.rotateStaticHookButton);
+
+  // private final JoystickButton i_trigger = new JoystickButton(m_joystick, OI_Constants.runIntakeButton);
   private final JoystickButton i_rotateHead = new JoystickButton(i_joystick, OI_Constants.rotateIntakeHeadButton);
   
-  private final JoystickButton i_rotateHead2 = new JoystickButton(i_joystick, 6);
+  private final JoystickButton i_rotateHead2 = new JoystickButton(i_joystick, 1);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -81,17 +82,18 @@ public class RobotContainer {
   private void configureButtonBindings() {
     m_DriveTrainSubsystem.setDefaultCommand(m_CartesianDriveCommand);
     // c_ClimbingSubsystem.setDefaultCommand(c_RotateClimberCommand);
+    i_intakeSubsystem.setDefaultCommand(new RunIntake(i_intakeSubsystem, m_joystick));
     i_rotateHead2.whileHeld(i_rotateArmCommand);
 
     c_trigger.whileHeld(new ClimbUpCommand(c_ClimbingSubsystem, c_joystick));
-    c_prepclimber.whileHeld(new PrepareClimbCommand(c_ClimbingSubsystem));
+    c_prepclimber.whileHeld(new PrepareClimbCommand(c_ClimbingSubsystem, c_joystick));
     c_thumbButton_climber.whileHeld(new ClimbCommand(c_ClimbingSubsystem, c_joystick));
     c_rotateClimber.whileHeld(new RotateClimberCommand(c_ClimbingSubsystem, c_joystick));
-    c_rotateStatic.whileHeld(new RotateStaticHooks(c_ClimbingSubsystem, c_joystick));
+    // c_rotateStatic.whileHeld(new RotateStaticHooks(c_ClimbingSubsystem, c_joystick));
 
-    i_trigger.whileHeld(new RunIntake(i_intakeSubsystem, i_joystick));
+    // i_trigger.whileHeld(new RunIntake(i_intakeSubsystem, i_joystick));
     i_rotateHead.whileHeld(new IntakeHeadRotateCommand(i_intakeSubsystem, i_joystick));
-    
+    // i_rotateHead2.whileHeld(new )
     SmartDashboard.putData("Run", new SetLEDs());
     // c_ClimbingSubsystem.setDefaultCommand(c_RotateArmsCommand);
   }
@@ -101,7 +103,7 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand(Trajectory trag) {
+  public Command getAutonomousCommand() {
 
 // RamseteCommand ramseteCommand =
     // new RamseteCommand(
@@ -121,7 +123,7 @@ public class RobotContainer {
     //     m_DriveTrainSubsystem);
 
   // Reset odometry to the starting pose of the trajectory.
-  m_DriveTrainSubsystem.resetOdometry(trag.getInitialPose());
+  // m_DriveTrainSubsystem.resetOdometry(trag.getInitialPose());
   // Run path following command, then stop at the end.
     // An ExampleCommand will run in autonomous
     return a_command;

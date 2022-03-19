@@ -5,10 +5,12 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ClimbingConstants;
 
@@ -18,13 +20,17 @@ public class ClimbingSubsystem extends SubsystemBase {
   TalonFX climbMotor = new TalonFX(ClimbingConstants.climbMotor);
   TalonSRX leftClimber = new TalonSRX(ClimbingConstants.armElevationMotorLeft);
   TalonSRX rightClimber = new TalonSRX(ClimbingConstants.armElevationMotorRight);
+PIDController pid = new PIDController(0.1, 0.00014, 0);
   /** Creates a new ClimbingSubsystem. */
   public ClimbingSubsystem() {
     rotatorMotor.setNeutralMode(NeutralMode.Brake);
+    rotatorMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+    
   }
 
   public void changeAngle(double amount){
-    rotatorMotor.set(ControlMode.PercentOutput, amount);
+    // rotatorMotor.set(ControlMode.PercentOutput, amount);
+    rotatorMotor.set(ControlMode.PercentOutput, pid.calculate(rotatorMotor.getSelectedSensorPosition(), amount));
     rotatorMotor.setNeutralMode(NeutralMode.Brake);
   }
 
