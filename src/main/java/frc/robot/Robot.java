@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
 import edu.wpi.first.cameraserver.CameraServer;
@@ -36,7 +34,7 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  private String trajectoryJSON = "\\PathWeaver\\PathWeaver\\output\\CenterStartPath.wpilib.json";
+  private String trajectoryJSON = "C:\\Users\\rpodo\\OneDrive\\Documents\\Coding\\FRC\\2022RobotCode\\Updated\\PathWeaver\\PathWeaver\\output\\test.wpilib.json";
   Trajectory trajectory = new Trajectory();
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -55,7 +53,7 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     new Thread(() -> {
       UsbCamera camera = CameraServer.startAutomaticCapture();
-      // camera.setResolution(640, 480);
+      camera.setResolution(640, 480);
       camera.setVideoMode(PixelFormat.kYUYV, 640, 480, 60);
 
       CvSink cvSink = CameraServer.getVideo();
@@ -69,10 +67,17 @@ public class Robot extends TimedRobot {
           System.out.println("Frame!");
           continue;
         }
-        Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+        // Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
         outputStream.putFrame(output);
       }
     }).start();
+//     CameraServer.startAutomaticCapture();
+
+// // Creates the CvSink and connects it to the UsbCamera
+// CvSink cvSink = CameraServer.getVideo();
+
+// // Creates the CvSource and MjpegServer [2] and connects them
+// CvSource outputStream = CameraServer.putVideo("Blur", 640, 480);
   }
 
   /**

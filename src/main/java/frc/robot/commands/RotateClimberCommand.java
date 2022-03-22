@@ -33,7 +33,7 @@ public class RotateClimberCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    c_subsystem.changeAngle(0);
+    c_subsystem.changeAngleStop();
   }
 
   // Returns true when the command should end.

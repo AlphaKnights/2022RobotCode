@@ -20,17 +20,22 @@ public class ClimbingSubsystem extends SubsystemBase {
   TalonFX climbMotor = new TalonFX(ClimbingConstants.climbMotor);
   TalonSRX leftClimber = new TalonSRX(ClimbingConstants.armElevationMotorLeft);
   TalonSRX rightClimber = new TalonSRX(ClimbingConstants.armElevationMotorRight);
-PIDController pid = new PIDController(0.1, 0.00014, 0);
+// PIDController pid = new PIDController(1, 0, 0);
   /** Creates a new ClimbingSubsystem. */
   public ClimbingSubsystem() {
     rotatorMotor.setNeutralMode(NeutralMode.Brake);
-    rotatorMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+    // rotatorMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
     
   }
 
   public void changeAngle(double amount){
+    rotatorMotor.set(ControlMode.PercentOutput, amount);
+    // rotatorMotor.set(ControlMode.PercentOutput, pid.calculate(rotatorMotor.getSelectedSensorPosition(), amount));
+    rotatorMotor.setNeutralMode(NeutralMode.Brake);
+  }
+  public void changeAngleStop(){
     // rotatorMotor.set(ControlMode.PercentOutput, amount);
-    rotatorMotor.set(ControlMode.PercentOutput, pid.calculate(rotatorMotor.getSelectedSensorPosition(), amount));
+    rotatorMotor.set(ControlMode.PercentOutput, 0);
     rotatorMotor.setNeutralMode(NeutralMode.Brake);
   }
 

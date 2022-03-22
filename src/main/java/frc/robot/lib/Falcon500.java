@@ -25,7 +25,7 @@ public class Falcon500 implements MotorController {
     
     @Override
     public double get() {
-        return motor.getMotorOutputPercent();
+        return (motor.getMotorOutputPercent()+motor2.getSelectedSensorPosition())/2;
     }
 
     @Override

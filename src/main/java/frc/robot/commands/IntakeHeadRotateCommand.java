@@ -6,7 +6,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants.IntakeConstants;
 import frc.robot.subsystems.IntakeSubsystem;
 
 public class IntakeHeadRotateCommand extends CommandBase {
@@ -28,7 +27,8 @@ public class IntakeHeadRotateCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    angle = Math.pow(i_Joystick.getRawAxis(0), 5/3);
+    // angle = Math.pow(i_Joystick.getRawAxis(0), 5/3);
+    angle = i_Joystick.getRawAxis(0);
     if(((Math.abs(angle)-.05)>=0.5)){
       i_subsystem.RotateHead(angle);
     }

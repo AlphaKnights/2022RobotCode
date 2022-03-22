@@ -4,21 +4,11 @@
 
 package frc.robot;
 
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.RamseteController;
-import edu.wpi.first.math.controller.SimpleMotorFeedforward;
-import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
-import edu.wpi.first.math.trajectory.Trajectory;
-import edu.wpi.first.math.trajectory.TrajectoryConfig;
-import edu.wpi.first.math.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants.AutoConstants;
-import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OI_Constants;
-import frc.robot.commands.AutoCommand;
 import frc.robot.commands.CartesianDriveCommand;
 import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.ClimbUpCommand;
@@ -27,14 +17,12 @@ import frc.robot.commands.IntakeArmCommand;
 import frc.robot.commands.IntakeHeadRotateCommand;
 import frc.robot.commands.PrepareClimbCommand;
 import frc.robot.commands.RotateClimberCommand;
-import frc.robot.commands.RotateStaticHooks;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.SetLEDs;
 import frc.robot.subsystems.ClimbingSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -65,7 +53,7 @@ public class RobotContainer {
   // private final JoystickButton c_rotateStatic = new JoystickButton(c_joystick, OI_Constants.rotateStaticHookButton);
 
   // private final JoystickButton i_trigger = new JoystickButton(m_joystick, OI_Constants.runIntakeButton);
-  private final JoystickButton i_rotateHead = new JoystickButton(i_joystick, OI_Constants.rotateIntakeHeadButton);
+  // private final JoystickButton i_rotateHead = new JoystickButton(i_joystick, OI_Constants.rotateIntakeHeadButton);
   
   private final JoystickButton i_rotateHead2 = new JoystickButton(i_joystick, 1);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -92,7 +80,7 @@ public class RobotContainer {
     // c_rotateStatic.whileHeld(new RotateStaticHooks(c_ClimbingSubsystem, c_joystick));
 
     // i_trigger.whileHeld(new RunIntake(i_intakeSubsystem, i_joystick));
-    i_rotateHead.whileHeld(new IntakeHeadRotateCommand(i_intakeSubsystem, i_joystick));
+    // i_rotateHead.whileHeld(new IntakeHeadRotateCommand(i_intakeSubsystem, i_joystick));
     // i_rotateHead2.whileHeld(new )
     SmartDashboard.putData("Run", new SetLEDs());
     // c_ClimbingSubsystem.setDefaultCommand(c_RotateArmsCommand);
